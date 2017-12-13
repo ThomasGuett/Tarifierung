@@ -53,6 +53,8 @@ public class Preisanfrage extends com.apiomat.nativemodule.AbstractClientDataMod
     public static final String MODEL_NAME = "Preisanfrage";
 
     /** class specific attributes */
+    private Double beitrag = null;
+    private Double versicherungssumme = null;
     /**
      * Protected constructor; to create a new instance, use the createObject() method
      */
@@ -75,6 +77,26 @@ public class Preisanfrage extends com.apiomat.nativemodule.AbstractClientDataMod
     public String getModelName( )
     {
         return MODEL_NAME;
+    }
+
+    public Double getBeitrag()
+    {
+         return this.beitrag;
+    }
+
+    public void setBeitrag( Double arg )
+    {
+        this.beitrag = arg;
+    }
+
+    public Double getVersicherungssumme()
+    {
+         return this.versicherungssumme;
+    }
+
+    public void setVersicherungssumme( Double arg )
+    {
+        this.versicherungssumme = arg;
     }
 
 }
