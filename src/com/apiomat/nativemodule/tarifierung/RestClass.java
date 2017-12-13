@@ -27,49 +27,64 @@ package com.apiomat.nativemodule.tarifierung;
 /**
  * REST class for your module
  */
-@io.swagger.annotations.Api( value = "/Tarifierung", tags="Tarifierung" )
+@io.swagger.annotations.Api( value = "/Tarifierung", tags = "Tarifierung" )
 public class RestClass extends com.apiomat.nativemodule.AbstractRestResource
 {
-    /**
-     * Constructor, leave as is
-     *
-     * @param uriInfo
-     * @param servletRequest
-     * @param securityContext
-     * @param wsRequest
-     */
-    public RestClass( javax.ws.rs.core.UriInfo uriInfo, javax.servlet.http.HttpServletRequest servletRequest, javax.ws.rs.core.SecurityContext securityContext,
-        javax.ws.rs.core.Request wsRequest )
-    {
-        super( uriInfo, servletRequest, securityContext, wsRequest );
-    }
+	/**
+	 * Constructor, leave as is
+	 *
+	 * @param uriInfo
+	 * @param servletRequest
+	 * @param securityContext
+	 * @param wsRequest
+	 */
+	public RestClass( javax.ws.rs.core.UriInfo uriInfo, javax.servlet.http.HttpServletRequest servletRequest,
+		javax.ws.rs.core.SecurityContext securityContext,
+		javax.ws.rs.core.Request wsRequest )
+	{
+		super( uriInfo, servletRequest, securityContext, wsRequest );
+	}
 
-    /**
-     * A simple ping-like GET endpoint.
-     * You can pass a <PARAM> to the following URL, which is contained in the response then.
-     *
-     * curl <BASEURL>/yambas/rest/modules/Tarifierung/{appName}/spec/ping/<PARAM>
-     *
-     * The @ApiOperation and @ApiParam annotations are used to documnt the REST endpoint in the apidocs:
-     * <BASEURL>/apidocs/index.html
-     *
-     * @param param arbitrary value which is returned in response
-     * @return response
-     */
-    @io.swagger.annotations.ApiOperation( value = "A simple ping-like GET endpoint" )
-    @javax.ws.rs.GET
-    @javax.ws.rs.Path( "/ping/{param}" )
-    public javax.ws.rs.core.Response ping( @io.swagger.annotations.ApiParam( value = "param name" ) @javax.ws.rs.PathParam( "param" ) String param )
-    {
-        final com.apiomat.nativemodule.Request request = this.getAOMRequest( );
-        // extract auth information from the request object if needed
-        System.out.println( request );
+	/**
+	 * A simple ping-like GET endpoint.
+	 * You can pass a <PARAM> to the following URL, which is contained in the response then.
+	 *
+	 * curl <BASEURL>/yambas/rest/modules/Tarifierung/{appName}/spec/ping/<PARAM>
+	 *
+	 * The @ApiOperation and @ApiParam annotations are used to documnt the REST endpoint in the apidocs:
+	 * <BASEURL>/apidocs/index.html
+	 *
+	 * @param param arbitrary value which is returned in response
+	 * @return response
+	 */
+	//    @io.swagger.annotations.ApiOperation( value = "A simple ping-like GET endpoint" )
+	//    @javax.ws.rs.GET
+	//    @javax.ws.rs.Path( "/ping/{param}" )
+	//    public javax.ws.rs.core.Response ping( @io.swagger.annotations.ApiParam( value = "param name" ) @javax.ws.rs.PathParam( "param" ) String param )
+	//    {
+	//        final com.apiomat.nativemodule.Request request = this.getAOMRequest( );
+	//        // extract auth information from the request object if needed
+	//        System.out.println( request );
+	//
+	//        if (param == null || "".equals( param.trim( ) ))
+	//        {
+	//            param = "pong";
+	//        }
+	//
+	//        return javax.ws.rs.core.Response.ok( param ).type( javax.ws.rs.core.MediaType.TEXT_PLAIN ).build( );
+	//    }
 
-        if (param == null || "".equals( param.trim( ) ))
-        {
-            param = "pong";
-        }
+	@io.swagger.annotations.ApiOperation( value = "berechne Beitrag" )
+	@javax.ws.rs.GET
+	@javax.ws.rs.Path( "/berechneBeitrag/{versicherungssumme}" )
+	public javax.ws.rs.core.Response berechneBeitrag( @io.swagger.annotations.ApiParam(
+		value = "param name" ) @javax.ws.rs.PathParam( "versicherungssumme" ) String versicherungssumme )
+	{
+		//        final com.apiomat.nativemodule.Request request = this.getAOMRequest( );
+		// extract auth information from the request object if needed
+		Double versSumme = Double.valueOf( versicherungssumme );
+		String response = String.format( "monatlicher Beitrag: %.2f", versSumme / 100 );
 
-        return javax.ws.rs.core.Response.ok( param ).type( javax.ws.rs.core.MediaType.TEXT_PLAIN ).build( );
-    }
+		return javax.ws.rs.core.Response.ok( response ).type( javax.ws.rs.core.MediaType.TEXT_PLAIN ).build( );
+	}
 }
