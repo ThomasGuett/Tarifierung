@@ -43,7 +43,16 @@ public class PreisanfrageHooksNonTransient<T extends com.apiomat.nativemodule.ta
 
 	@Override
 	public void beforePost( com.apiomat.nativemodule.tarifierung.Preisanfrage obj, com.apiomat.nativemodule.Request r )
-	{}
+	{
+		if ( null != obj.getVersicherungssumme( ) )
+		{
+			obj.setBeitrag( obj.getVersicherungssumme( ) / 100 );
+		}
+		else
+		{
+			this.model.throwException( "Versicherungssumme ist Pflichtfeld" );
+		}
+	}
 
 	@Override
 	public boolean beforePostData( final com.apiomat.nativemodule.tarifierung.Preisanfrage obj,
