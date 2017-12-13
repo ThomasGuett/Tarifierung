@@ -54,6 +54,7 @@ public class Preisanfrage extends com.apiomat.nativemodule.AbstractClientDataMod
 
     /** class specific attributes */
     private Double beitrag = null;
+    private String plz = null;
     private Double versicherungssumme = null;
     /**
      * Protected constructor; to create a new instance, use the createObject() method
@@ -87,6 +88,16 @@ public class Preisanfrage extends com.apiomat.nativemodule.AbstractClientDataMod
     public void setBeitrag( Double arg )
     {
         this.beitrag = arg;
+    }
+
+    public String getPlz()
+    {
+         return this.plz;
+    }
+
+    public void setPlz( String arg )
+    {
+        this.plz = arg;
     }
 
     public Double getVersicherungssumme()
